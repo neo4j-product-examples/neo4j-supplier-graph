@@ -1,0 +1,8 @@
+# Neo4j
+neo4j-rust-ext
+neo4j
+
+# Environment variable management
+python-dotenv
+
+

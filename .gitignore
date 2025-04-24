@@ -1,0 +1,8 @@
+secrets.toml
+*.env
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+.idea/
+scratch/
+source-csvs/

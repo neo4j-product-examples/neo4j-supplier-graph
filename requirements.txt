@@ -1,0 +1,27 @@
+# Jupyter Notebook environment
+jupyter
+
+# AI
+google-cloud-aiplatform[adk, agent_engines]
+langchain-google-genai
+
+# Neo4j
+neo4j-rust-ext
+neo4j
+
+# Environment variable management
+python-dotenv
+
+# BigQuery Python Client and other dependencies
+google-cloud-bigquery
+db-dtypes
+
+# Pandas (used in BigQuery-related data manipulation)
+pandas
+
+# other packages
+tqdm
+pytz
+fpdf
+pypdf2
+iso3166
