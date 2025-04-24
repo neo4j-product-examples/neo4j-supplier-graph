@@ -4,6 +4,7 @@ jupyter
 # AI
 google-cloud-aiplatform[adk, agent_engines]
 langchain-google-genai
+langchain-neo4j
 
 # Neo4j
 neo4j-rust-ext

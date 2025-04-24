@@ -5,13 +5,13 @@ A working example for deploying a GraphRAG agent to automate Bill of Materials a
 This is done using Neo4j as the graph Database and Google Cloud Platform (GCP) infrastructure including: 
 1. Gemini for the LLM
 2. Google Agent Development Kit (ADK) for the agent SDK
-3. Google Cloud Run for Agent deployment
-4. Big Query to store the source data (to be mapped to knowledge graph in Neo4j)
+3. Google Cloud Run for agent deployment
+4. BigQuery to store the source data (to be mapped to knowledge graph in Neo4j)
 
 This repo is broken into 3 major directories: 
 
-1. __[/create-source-data](/create-source-data) (Can Be Skipped):__  to construct Big Query source tables
-2. __[/knowledge-graph-creation](/knowledge-graph-creation):__ Map Big Query Tables and Documents to a Neo4j Knowledge Graph
+1. __[/create-source-data](/create-source-data) (Can Be Skipped):__  Code used to construct source data 
+2. __[/knowledge-graph-creation](/knowledge-graph-creation):__ Map BigQuery tables and GCS documents to a Neo4j Knowledge Graph
 3. __[/agents](/agents):__ Get started with and deploy multi-agent GraphRAG service. See README in directory for instructions
 
 ## Prerequisites
