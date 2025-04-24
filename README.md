@@ -11,7 +11,7 @@ This is done using Neo4j as the graph Database and Google Cloud Platform (GCP) i
 This repo is broken into 3 major directories: 
 
 1. __[/create-source-data](/create-source-data) (Can Be Skipped):__  to construct Big Query source tables
-2. __[/knowledge-graph-creation](/knowledge-graph-creation):__ Map Big Query Data to a Neo4j Knowledge Graph
+2. __[/knowledge-graph-creation](/knowledge-graph-creation):__ Map Big Query Tables and Documents to a Neo4j Knowledge Graph
 3. __[/agents](/agents):__ Get started with and deploy multi-agent GraphRAG service. See README in directory for instructions
 
 ## Prerequisites
