@@ -1,11 +1,16 @@
 # ADK Agents
 
+## Tools, Queries and Agent Basics
 The notebook [get-started-with-adk-graphrag.ipynb](get-started-with-adk-graphrag.ipynb) walks through the basics to get started. including:
 1. Calling LLM models
 2. Creating general GraphRAG tools
 3. Creating specialized GraphRAG retrieval tools for specifc BOM and Supplier query patterns
 4. Creating a multi-agent system with tools, conversational memory, reasoning, agent routing, etc. 
 
+To visualize what these queries are doing, you can load the [neo4j_query_saved_cypher.csv](neo4j_query_saved_cypher.csv) into the Aura console.  Run the `set params` query first which will then allow you to run the others.  These queries replicate the logic in key tools and output a graph result to visualize.
+
+
+## Agent Web UI and Deployment
 The directory [./app](./app) contains an agent to deploy onto cloud run per directions in the [adk-docs](https://google.github.io/adk-docs/deploy/cloud-run/).
 specifically you will do the following:
 

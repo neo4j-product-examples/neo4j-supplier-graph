@@ -1,0 +1,35 @@
+name,description,query,id,parentId,isFolder
+item-country-dependency,,"MATCH (i:Item {sku_id: $sku_id})
+MATCH path=(i)<-[:BOM*]-(comp:Item)-[r:DEPENDS_ON]->(c:Country)
+RETURN *
+// comp.sku_id AS sku_id,
+// comp.name AS name,
+// collect({country: c.name, dependency: r.description}) AS known_country_dependencies,
+// ' <- ' + apoc.text.join([n IN tail(nodes(path))[..-1] | n.sku_id + ' (' + coalesce(n.name, '') + ')' ], ' <- ') AS supply_chain_dependency",0,,false
+get-bom-tree,,"MATCH (i:Item {sku_id: $sku_id})
+MATCH path=(i)<-[:BOM*]-(:Item)
+RETURN * 
+//' <- ' + apoc.text.join([n IN tail(nodes(path)) | n.sku_id + ' (' + coalesce(n.name, '') + ')' ], ' <- ') AS supply_chain_dependency",1,,false
+get prods with country dep,,"MATCH (i:Item)-[r:DEPENDS_ON]->(c:Country {code:$countryCode})
+WHERE  lower(r.description) CONTAINS lower($dependencySearchTerm)
+WITH i,r,c
+MATCH path = (i)-[:BOM*]->(p {is_finished_product:true})
+RETURN * 
+// WITH p.sku_id AS product_sku_id, p.name AS product_name,  i.sku_id AS depends_on_item_sku_id, i.name AS depends_on_item_name, collect({country: c.name, dependency: r.description}) AS known_country_dependency,
+//     ' <- ' + apoc.text.join([n IN reverse(nodes(path)[..-1])| n.sku_id + ' (' + coalesce(n.name, '') + ')' ], ' <- ') AS supply_chain_dependency
+// RETURN  product_sku_id, product_name, collect({depends_on_item_sku_id: depends_on_item_sku_id, depends_on_item_name: depends_on_item_name, country_dependency_of_item: known_country_dependency, supply_chain_dependency_for_product: supply_chain_dependency}) AS dependencies",2,,false
+supplier substitution,,"MATCH (l)<-[:LOCATED_AT]-(s:Supplier {code: $code})<-[:AT]-(i:Item)
+OPTIONAL MATCH path=(i)-[:AT]->(sAlt:Supplier  WHERE sAlt.tier = s.tier AND sAlt <> s)-[:LOCATED_AT]->(lAlt)
+RETURN *
+// // Calculate geodistance
+// WITH i, sAlt, round(point.distance(l.geo_point, lAlt.geo_point) * 0.000621371) AS distance_in_miles
+// ORDER BY i, distance_in_miles ASC
+// // Collect recommended supplier and other options
+// WITH i, collect({code: sAlt.code, distance: distance_in_miles}) AS all_sAlt
+// RETURN i.sku_id AS sku_id, i.name as name, all_sAlt[0] AS recommended_supplier, tail(all_sAlt) AS other_suppliers",3,,false
+set params,,":param {
+  sku_id: ""35472245A"",
+  countryCode: ""CAN"",
+  dependencySearchTerm: ""nickel"",
+  code: ""YP8UYT""
+}",4,,false
