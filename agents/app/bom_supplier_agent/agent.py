@@ -140,7 +140,7 @@ def get_item(sku_id: str) -> dict[str, Any]:
     """
     try:
         results = db._execute_query("""
-        MATCH (i:Item {sku_id: "35472245A"})
+        MATCH (i:Item {sku_id: $sku_id})
         RETURN i.sku_id AS sku_id, i.name AS name, i.family AS family, i.is_finished_product AS is_finished_product
         """, {"sku_id": sku_id})
         return results

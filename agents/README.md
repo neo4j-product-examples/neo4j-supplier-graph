@@ -1,4 +1,4 @@
-# [WIP] ADK Agents
+# ADK Agents
 
 The notebook [get-started-with-adk-graphrag.ipynb](get-started-with-adk-graphrag.ipynb) walks through the basics to get started. including:
 1. Calling LLM models
