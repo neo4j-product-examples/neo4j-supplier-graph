@@ -60,4 +60,35 @@ The left side panel provides deeper visibility into Agent steps, tools, and rout
 You can also see the API itself by replacing `/dev-ui/..` at the end of the url with `/docs`
 ![agent-api](img/api-docs.png)
 
+## Running with `mcp-neo4j-cypher`
+The above deployment does not leverage Model Context Protocol (MCP) for natural language query generation tools in the `database_agent`. It instead uses locally defined python functions for such capabilities.  The `app/bom_supplier_agent_mcp` directory does include MCP, but we recommend using Claude 4 for the database agent as it seems to work better at the moment.  To deploy you similarly provide a `.env` file and simply change the env variables:
+
+```bash
+# Set your Google Cloud Project ID
+export GOOGLE_CLOUD_PROJECT="neo4jeventdemos"
+
+# Set your desired Google Cloud Location
+export GOOGLE_CLOUD_LOCATION="us-central1" # Example location
+
+# Set the path to your agent code directory
+export AGENT_PATH="./bom_supplier_agent_mcp" 
+
+# Set a name for your Cloud Run service (optional)
+export SERVICE_NAME="bom-supplier-agent-mcp-service"
+
+# Set an application name (optional)
+export APP_NAME="bom-supplier-agent-mcp-app"
+```
+Then simple use the adk cli:
+```bash
+adk deploy cloud_run \
+--project=$GOOGLE_CLOUD_PROJECT \
+--region=$GOOGLE_CLOUD_LOCATION \
+--service_name=$SERVICE_NAME \
+--app_name=$APP_NAME \
+--with_ui \
+$AGENT_PATH
+```
+
+
 
