@@ -23,6 +23,7 @@ db-dtypes
 pandas
 
 # other packages
+uv
 tqdm
 pytz
 fpdf
