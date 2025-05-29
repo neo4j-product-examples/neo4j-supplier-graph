@@ -1,0 +1,12 @@
+# AI
+litellm
+
+# Neo4j
+neo4j-rust-ext
+neo4j
+
+# Other
+uv
+python-dotenv
+
+
